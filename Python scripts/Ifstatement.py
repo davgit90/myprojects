@@ -12,4 +12,15 @@ if click == True:
 
 print(Like)
 
+Temperature = 20
+Thermo = 15
+
+if Temperature <= 15:
+      Thermo = Thermo + 5
+print(Thermo) 
+if Temperature >= 15:
+      Thermo = Thermo - 3
+print(Thermo) 
+   
+
 
