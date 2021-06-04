@@ -21,6 +21,15 @@ print(Thermo)
 if Temperature >= 15:
       Thermo = Thermo - 3
 print(Thermo) 
-   
+
+Time = "day"
+Sleepy = "False"
+Pajamas = "Off"
+
+if Time == "Night" or Sleepy =="True":
+      Pajamas ="On"
+
+print(Pajamas)
+
 
 
