@@ -1,1 +1,23 @@
 # Poweshell commands
+Get-Help -Name Get-Process 
+Get-Help -Name Get-* 
+Set-ExecutionPolicy
+Get-ExecutionPolicy
+Get-Service
+ConvertTo-HTML
+  Get-Service | ConvertTo-HTML -Property Name, Status > C:\services.htm 
+Export-CSV
+  Get-Service | Export-CSV c:\service.csv 
+Select-Object
+  Get-Service | Select-Object Name, Status | Export-CSV c:\service.csv 
+Get-EventLog
+  Get-EventLog -Log "Application" 
+Get-Process
+  Get-Process -processname notepad
+Stop-Process 
+  Stop-Process -Name notepad<br> Stop-Process -ID 2668 
+Clear-History
+  PS C:\> Clear-History -Command *help*, *command
+Where-Object
+  Get-Service | Where-Object {$_.Status -eq 'Running'}
+
