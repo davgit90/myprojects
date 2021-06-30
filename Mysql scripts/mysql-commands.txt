@@ -1,0 +1,65 @@
+#MySQL Commands 
+
+#extracts data from a database
+SELECT column_name
+FROM table_name;
+
+#updates data in a database
+UPDATE table_name
+SET some_column = some_value
+WHERE some_column = some_value;
+
+#deletes data from a database
+DELETE FROM table_name
+WHERE some_column = some_value;
+
+#inserts new data into a database
+INSERT INTO table_name (column_1, column_2, column_3)
+VALUES (value_1, ‘value_2’, value_3);
+
+#creates a new database
+CREATE DATABASE databasename;
+
+#modifies a database
+ALTER DATABASE database_name
+[COLLATE collation_name ]
+
+#creates a new table
+CREATE TABLE table_name (
+column_1 datatype,
+column_2 datatype,
+column_3 datatype
+);
+
+#modifies a table
+ALTER TABLE table_name
+ADD column_name datatype;
+
+#deletes a table
+DROP TABLE table_name;
+
+#creates an index
+CREATE INDEX index_name
+ON table_name (column_name1, column_name2…);
+
+#deletes an index
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+mysql -h hostname -u root -p
+
+
+#List all databases on the sql server.	
+show databases;
+
+#Switch to a database.	
+use [db name];
+
+#To see all the tables in the db.	
+show tables;
+
+#To see database's field formats.	
+describe [table name];
+
+#To delete a db.	
+drop database [database name];

@@ -1,0 +1,33 @@
+##Docker Commands
+docker –version
+docker pull <image name>
+docker run -it -d <image name>
+docker ps
+docker ps -a
+docker exec -it <container id> bash
+docker stop <container id>
+docker kill <container id>
+docker commit <conatainer id> <username/imagename>
+docker login
+docker push <username/image name>
+docker images
+docker image remove <imageid>
+docker container rm <tag>
+docker rm <container id>
+docker rmi <image-id>
+docker image history 100229ba687e
+docker image inspect 100229ba687e
+docker container pause <id>
+docker container unpause <id>
+docker container prune
+docker build <path to docker file>
+docker system df 
+docker system events
+docker system info 
+docker system prune -a
+docker stats <conatainer id >
+docker run -m 512m --cpu-quota=50000
+docker network create xxx
+docker-compose up
+docker-compose up -d
+

@@ -1,0 +1,27 @@
+db dump Commands
+mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
+
+compare two database
+https://github.com/dlevsha/compalex
+
+dump specific tables
+mysqldump -u username -p db_name table1_name table2_name table3_name > dump.sql
+
+from local machine
+/usr/local/mysql/bin/mysqldump -h127.0.0.1 --port = 3306 -u [username] -p [password] --databases [db_name] --tables [tablename] > /to/path/tablename.sql;
+
+from remote machine
+/usr/local/mysql/bin/mysqldump -h [remoteip] --port = 3306 -u [username] -p [password] --databases [db_name] --tables [tablename] > /to/path/tablename.sql;
+
+db export all databases
+mysqldump -u root -p --all-databases > alldb.sql
+mysqldump -u root -p --opt --all-databases > alldb.sql
+mysqldump -u root -p --all-databases --skip-lock-tables > alldb.sql
+
+db import all databases
+mysql -u root -p < alldb.sql
+
+turncate tables
+mysql -Nse 'show tables' DATABASE_NAME | while read table; do mysql -e "truncate table $table" DATABASE_NAME; done
+
+

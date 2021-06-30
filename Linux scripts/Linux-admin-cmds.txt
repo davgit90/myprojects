@@ -1,0 +1,11 @@
+#Linux Administration Commands
+
+# scp from local to remote
+scp -r /local/directory remote_username@10.10.0.2:/remote/directory
+
+# scp from remote to local
+scp remote_username@10.10.0.2:/remote/file.txt /local/directory
+
+#Copy a File Between Two Remote Systems using the scp Command #
+scp user1@host1.com:/files/file.txt user2@host2.com:/files
+
