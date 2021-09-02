@@ -1,0 +1,83 @@
+##scripted pipeline
+node {
+    stage("SCM){
+
+    }
+}
+
+##Declarative 
+
+pipeline{
+    agent any
+    stages{
+        stage("Welcome"){
+            steps{
+                echo "Welcome"
+            }
+        }
+    }
+}
+
+##Checkout code from source code repo
+## we dont need to use git step when using script from scm 
+pipeline{
+    agent any
+    stages{
+        stage("Git checkput"){
+            steps{
+                git credentialsId: 'github', url: 'http://'
+            }
+        }
+    }
+}
+
+## maven build stage
+
+pipeline{
+    agent any
+    
+    environment{
+        PATH = "/opt/maven:$PATH"
+    }
+    
+    stages{
+        stage("maven build"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+    }
+}
+
+### simple CI/CD Pipeline script
+currentBuild.displayName = "online-shopping-#"+currentBuild.number
+pipeline{
+    agent any
+    stages{
+        stage("Git checkput"){
+            steps{
+                git credentialsId: 'github', url: 'http://'
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh "mvn clean package"
+                sh "mv target/*.war target/myweb.war"
+            }
+        }
+        stage("deploy-dev"){
+            steps{
+                sshagent(['agentname']){
+                sh """
+                   scp -o StrictHostKeyChecking=no target/myweb,war user@10.0.0.0:/opt/tomcat8/webapps/
+                  
+                   ssh user@10.0.0.0 /opt/tomcat8/bin/shutdown.sh
+                  
+                   ssh user@10.0.0.0 /opt/tomcat8/bin/startup.sh 
+                """
+                }
+            
+            }
+        }
+    }
+}
