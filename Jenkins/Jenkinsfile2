@@ -5,12 +5,11 @@ pipeline{
         DOCKER_TAG = getDockerTag()
     }
     stages{
-        stage("Build docker image"){
+       stage("Build docker image"){
             steps{
                 sh " docker build . -t aditya/nodeapp:${DOCKER_TAG} "
             }
-        }
-    stages{
+        }   
         stage("Dockerhub push"){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub')]) {
@@ -19,9 +18,19 @@ pipeline{
                 }
             }
         }
-    }
-      
+        stage("Deploy to kubernetes"){
+            steps{
+                sh "chmod +x changeTag.sh"
+                sh "./changeTag.sh ${DOCKER_TAG}"
+                sshagent(['kops-machine']){
+                    ssh "scp -o ......."
+                    
+                }
+            }
+        }
+    }      
 }
+
 ## get latest tag
 def getDockerTag(){
     def tag =sh script: 'git rev-parse HEAD', returnStdout: true
