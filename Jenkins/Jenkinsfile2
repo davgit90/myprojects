@@ -10,6 +10,15 @@ pipeline{
                 sh " docker build . -t aditya/nodeapp:${DOCKER_TAG} "
             }
         }
+    stages{
+        stage("Dockerhub push"){
+            steps{
+                withCredentials([string(credentialsId: 'docker-hub')]) {
+                    sh "docker login -u kammana -p ${dockerHubPwd}"
+                    sh "docker push  kammana aditya/nodeapp:${DOCKER_TAG}"
+                }
+            }
+        }
     }
       
 }
