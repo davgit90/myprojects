@@ -1,0 +1,28 @@
+currentBuild.displayName = "pipeline-project1-#"+currentBuild.number
+pipeline{
+    agent any
+    environment{
+        PATH = "/opt/maven/bin:$PATH"
+    }
+    stages{
+        stage("Git checkput"){
+            steps{
+                git credentialsId: 'github', url: 'https://github.com/devopsdemo1990/DevopsBasics'
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        stage("Build docker image")
+            steps{
+                sh "docker build -t "
+            }
+    }
+}
+## get latest tag
+def getDockerTag(){
+    def tag =sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
+} 
