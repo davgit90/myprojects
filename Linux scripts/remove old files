@@ -1,6 +1,6 @@
 find ./my_dir -mtime +10 -type f
-
-
+/home/rws-ui-vm/tomcat/apache-tomcat-8.5.61_UI/logs
+find /home/rws-ui-vm/tomcat/apache-tomcat-8.5.61_UI/logs -mtime +1 -type f
 
 
 #!/bin/bash
