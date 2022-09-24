@@ -1,0 +1,32 @@
+User and Group Management
+
+adduser
+userdel
+addgroup
+delgroup
+usermod
+chage
+sudo
+/etc/passwd (user information)
+/etc/shadow (Encrypted Passwords)
+/etc/group (Group info)
+/etc/sudoers
+apt-get install
+yum install
+sudo visudo
+user  ALL=(ALL) ALL
+user  ALL=(root) /usr/sbin/adduser, /usr/sbin/usermod
+Cmnd_Alias USERMANAGEMENT = /usr/sbin/adduser, /usr/sbin/usermod
+User    ALL=(root) USERMANAGEMENT
+su -l user
+awk -F':' '{ print $1}' /etc/passwd
+id username
+sudo useradd username
+passwd username
+cat /etc/passwd
+x : user id : user group id : : /home/username : /bin/bash 
+usermod  -u new_id username
+usermod -g  new_group_id username
+sudo usermod -l new_login_name old_login_name
+usermod -d new_home_directory_path username
+userdel -r username
