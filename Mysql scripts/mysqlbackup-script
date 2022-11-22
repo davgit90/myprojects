@@ -1,0 +1,18 @@
+$path = "\Program Files\MYSQL\MYSQL Server 5.7\bin"
+#$user = "root"
+#$password = "Azure##12345"
+cd C:\$path
+.\mysql.exe -u root -pAzure##12345 -h 13.71.36.42 -P 4578 -e 'use scada;' -e 'show tables;' | Out-File -FilePath 'D:\tableslist.txt'
+Select-String -Path D:\tableslist.txt -Pattern 'event_data_22' | select-object -ExpandProperty Line | out-file D:\events.txt
+$tablelength =(Get-Content D:\events.txt).Length
+echo $tablelength
+for ($i = 0; $i -le 2; $i++)
+{
+
+$tablename = Get-Content D:\events.txt | Select -Index $i
+.\mysqldump.exe -u root -pAzure##12345 --max-allowed-packet=1G --net-buffer-length=32704 -h 13.71.36.42 -P 4578 scada $tablename > C:\Users\Admin\Documents\scadadb\$tablename.sql 
+Remove-Variable tablename
+
+}
+
+cd C:\Users\Admin\Desktop
